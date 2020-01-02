@@ -1,4 +1,4 @@
-public class Stack{
+public static class Stack{
     private static class Node{
         // can you inastantiote from a static class?
         private int data;
