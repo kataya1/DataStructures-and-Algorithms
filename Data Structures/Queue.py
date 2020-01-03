@@ -3,44 +3,53 @@
 
 
 class Queue:
-    __QueueLength = 0
+    noOfQueues = 0
+    def __init__(self):
+        self.Head = None
+        self.Tail = None
+        Queue.noOfQueues += 1
     class Node:
-    def __init__(self, data):
-        
-        self.__data = data
-        self.__nextNode = None
-    __Head = None
-    __Tail = None
+        def __init__(self, data):   
+            self.data = data
+            self.nextNode = None
+
+
 
     # check empty
     def isEmpty(self):
-        return __Head == None
+        return self.Head == None
     # peek
     def peek(self):
-        return __Head.__data
+        return self.Head.data
     # add
     def add(self, data):
-        node = Node(data)
-        if __Head == None:
-            __Head = node
-        if __Tail != None:
-            __Tail.__nextNode = node
-        __Tail = nodes
+        node = self.Node(data)
+        if self.Head == None:
+            self.Head = node
+        if self.Tail != None:
+            self.Tail.nextNode = node
+        self.Tail = node
     # remove
-    def remove(parameter_list):
-        data = __Head.data
-        __Head = __Head.__nextNode
-        if __Head == None:
-            __Tail == None
+    def remove(self):
+        data = self.Head.data
+        self.Head = self.Head.nextNode
+        if self.Head == None:
+            self.Tail == None
         return data
         
 def main():
     q = Queue()
-    q.add(1)
-    q.add(2)
-    q.add(3)
-    q.add(4)
+    b = Queue()
+    c = Queue() 
+    print(Queue.noOfQueues)
+    q.add(12)
+    q.add(24)
+    q.add(36)
+    q.add(42)
     print(q.peek())
+    print(q.remove())
+    print(q.peek())
+
 
 if __name__ == "__main__":
     main()
