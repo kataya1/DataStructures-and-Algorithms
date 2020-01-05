@@ -18,10 +18,11 @@ class Linkedlist:
         
     # looking up O(n)
 
-    def look_up(self, self.head = None,data):
-        if self.head.data == data:
-            return self.head
-        self.look_up(self, self.head.next_node, data)
+    # def look_up(self, self.head = None,data):
+    #     if self.head.data != data:
+    #         return self.look_up(self.head.next_node, data)
+        
+        
         
             
             
