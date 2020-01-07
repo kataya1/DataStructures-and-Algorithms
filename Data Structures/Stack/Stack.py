@@ -16,7 +16,10 @@ class Stack:
     
     # peek
     def peek(self):
-        return self.top.data
+        try:
+            return self.top.data
+        except:
+            return None
     
     # push
     def push(self, data):
@@ -35,7 +38,7 @@ class Stack:
 
     # string representation
     def __str__(self):
-        return f"its top is {self.peek()}, and stack size is {self.stack_size}, num of stacks {Stack.num_of_stacks} "
+        return f"its top is {self.peek()}, and stack size is {self.stack_size} "
 
 def main():
     s = Stack()
