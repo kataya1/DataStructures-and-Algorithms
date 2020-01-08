@@ -14,36 +14,35 @@ class Queue2stacks:
     # enqueue
     def enqueue(self, data):
         self.stack1.push(data)
+        print(self)
 
     # dequeue
     def dequeue(self):
         # if stack2 is empty
-        if not self.stack2.top:
-            
+        if not self.stack2.top:     
             # while stack1 is not empty
             while self.stack1.top:
                 self.stack2.push(self.stack1.pop())
-            return self.stack2.pop()
-        else:
-            return self.stack2.pop()
-    
-    # def printf(self):
-    #     st1, st2 = [], []
-    #     def appender(stack,list):
-    #         for i in range(st):
+        r = self.stack2.pop()
+        print(f'{self} --> {r}')
+        return r
+
     def __str__(self):
 
         def lister(stack):
             # make lst O(n)
             lst = []
+            # traverse through nodes to make a list
             pointer = stack.top
             while pointer:
                 lst.append(pointer.data)
                 pointer = pointer.next_node
             return lst
-     
+        # bad design it makes this list for every push and pop worest case O(n*n)
         st1 = lister(self.stack1)
+        st1.reverse()
         st2 = lister(self.stack2)
+        st2.reverse()
         return f'stack1: {st1}, stack2: {st2}'
                 
 def main():
@@ -52,23 +51,16 @@ def main():
     q2.enqueue(9)
     q2.enqueue(1)
     q2.enqueue(675)
-    # print(q2.stack1,q2.stack2)
-    print(q2)
+
     q2.enqueue(637)
+    q2.enqueue(2)
     q2.enqueue(37)
-    # print(q2.stack1,q2.stack2)
-    print(q2)
-    print(q2.dequeue())
-    # print(q2.stack1,q2.stack2)
-    print(q2)
-    print(q2.dequeue())
+
+    q2.dequeue()
     q2.enqueue(5)
     q2.enqueue(7)
-    # print(q2.stack1,q2.stack2)
-    print(q2)
-    print(q2.dequeue())
-    # print(q2.stack1,q2.stack2)
-    print(q2)
+
+    q2.dequeue()
 
     
 
