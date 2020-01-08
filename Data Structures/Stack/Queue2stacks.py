@@ -31,29 +31,44 @@ class Queue2stacks:
     #     st1, st2 = [], []
     #     def appender(stack,list):
     #         for i in range(st):
+    def __str__(self):
 
-            
-        
-    
-
+        def lister(stack):
+            # make lst O(n)
+            lst = []
+            pointer = stack.top
+            while pointer:
+                lst.append(pointer.data)
+                pointer = pointer.next_node
+            return lst
+     
+        st1 = lister(self.stack1)
+        st2 = lister(self.stack2)
+        return f'stack1: {st1}, stack2: {st2}'
+                
 def main():
 
     q2 = Queue2stacks()
     q2.enqueue(9)
     q2.enqueue(1)
     q2.enqueue(675)
-    print(q2.stack1,q2.stack2)
+    # print(q2.stack1,q2.stack2)
+    print(q2)
     q2.enqueue(637)
     q2.enqueue(37)
-    print(q2.stack1,q2.stack2)
+    # print(q2.stack1,q2.stack2)
+    print(q2)
     print(q2.dequeue())
-    print(q2.stack1,q2.stack2)
+    # print(q2.stack1,q2.stack2)
+    print(q2)
     print(q2.dequeue())
     q2.enqueue(5)
     q2.enqueue(7)
-    print(q2.stack1,q2.stack2)
+    # print(q2.stack1,q2.stack2)
+    print(q2)
     print(q2.dequeue())
-    print(q2.stack1,q2.stack2)
+    # print(q2.stack1,q2.stack2)
+    print(q2)
 
     
 
