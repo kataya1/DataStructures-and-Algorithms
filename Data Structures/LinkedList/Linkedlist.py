@@ -17,11 +17,14 @@ class Linkedlist:
         self.tail = node
         
     # looking up O(n)
+    def look_up(self,arg):
+        pointer = self.head
+        while pointer.data != arg:
+            pointer = pointer.next_node
+        return pointer
 
-    # def look_up(self, self.head = None,data):
-    #     if self.head.data != data:
-    #         return self.look_up(self.head.next_node, data)
-        
+    # insert
+    # delete
         
         
             
