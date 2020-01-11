@@ -39,6 +39,7 @@ class Queue2stacks:
                 pointer = pointer.next_node
             return lst
         # bad design it makes this list for every push and pop worest case O(n*n)
+        # we could use dynamic programing like memoization and save it to a list to be recolled later 
         st1 = lister(self.stack1)
         st1.reverse()
         st2 = lister(self.stack2)
