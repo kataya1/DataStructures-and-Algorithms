@@ -1,10 +1,12 @@
 
 class Node:
+	
 	num_of_nodes = 1
 	def __init__(self,data):
 		self.left = None
 		self.right = None
 		self.data = data
+		Node.num_of_nodes += 1
 		
 	# do i need to make this an instance method, should it be a class or static method ?
 	def insert(self,data):
@@ -59,23 +61,21 @@ class Node:
 		
 	# def __str__(self):
 	# 	for 
-
-
-
-t = Node(5)
-t.insert(1)
-t.insert(3)    
-t.insert(10)    
-t.insert(4)    
-t.insert(2)    
-t.insert(7)    
-t.insert(13)
-t.in_order()
-print()
-t.pre_order()
-print()
-t.post_order()
-print(t.num_of_nodes)
+if __name__ == "__main__":
+	t = Node(5)
+	t.insert(1)
+	t.insert(3)    
+	t.insert(10)    
+	t.insert(4)    
+	t.insert(2)    
+	t.insert(7)    
+	t.insert(13)
+	t.in_order()
+	print()
+	t.pre_order()
+	print()
+	t.post_order()
+	print("\n", t.num_of_nodes)
 	
 
 	
