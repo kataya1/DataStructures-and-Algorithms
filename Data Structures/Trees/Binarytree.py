@@ -1,43 +1,64 @@
 
 class Node:
+	num_of_nodes = 1
 	def __init__(self,data):
 		self.left = None
 		self.right = None
 		self.data = data
+		
 	# do i need to make this an instance method, should it be a class or static method ?
 	def insert(self,data):
 		if data < self.data:
-			if self.left != None:
-				self.insert(data)
-			else:
+			# self.left.insert(data) if self.left else self.left = Node(data)
+			if self.left == None:
 				self.left = Node(data)
+			else:
+				self.left.insert(data)
 		else:
-			if self.right != None:
-				self.insert(data) 
+			# self.right.insert(data) if self.right else self.right = Node(data)
+			if self.right == None:
+				self.right = Node(data)
 			else:
-				self.left = Node(data)
-	
+				self.right.insert(data) 
+
 	def contain(self,data):
 		if data < self.data:
-			if self.left != None:
-				self.contain(data) 
+			if self.left:
+				self.left.contain(data) 
 			else:
 				return False
 		elif data > self.data:
-			if self.right != None:
-				self.contain(data)
+			if self.right:
+				self.right.contain(data)
 			else:
 				return False
 		else:
 			return True
-	def print_preorder(self):
-		print_preorder(self.left)
-		print(self.data,end="")
-		print_preorder(self.right)
+	def in_order(self):
+		if self.left != None:
+			self.left.in_order()
+		print(self.data, end=" ")
+		if self.right != None:
+			self.right.in_order()
+
+	def pre_order(self):
+		print(self.data, end=" ")
+		if self.left != None:
+			self.left.pre_order()
+		if self.right != None:
+			self.right.pre_order()
+
+	def post_order(self):
+		if self.left != None:
+			self.left.post_order()
+		if self.right != None:
+			self.right.post_order()
+		print(self.data, end=" ")
+	
+
 		
-	def printpostorder(self):
-		pass
-		
+	# def __str__(self):
+	# 	for 
 
 
 
@@ -49,9 +70,12 @@ t.insert(4)
 t.insert(2)    
 t.insert(7)    
 t.insert(13)
-
-    
-
+t.in_order()
+print()
+t.pre_order()
+print()
+t.post_order()
+print(t.num_of_nodes)
 	
 
 	
