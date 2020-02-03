@@ -1,6 +1,6 @@
 
 class Node:
-	
+	#static/class variable
 	num_of_nodes = 1
 	def __init__(self,data):
 		self.left = None
