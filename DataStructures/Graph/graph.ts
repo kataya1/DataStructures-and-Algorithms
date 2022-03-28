@@ -9,31 +9,32 @@ class someAction<T>{
         this.orderednodes.push(n)
     }
     print(){
-        return this.orderednodes
+        return this.orderednodes.map( n => n.data)
     }
 }
 class node<T>{
     data: T;
     adjacent: node<T>[];
     visited: number;
-    constructor(d: T, adj?: node<T>[]){
+    constructor(d: T, adj: node<T>[] = []){
         this.data = d
         this.adjacent = adj
+        this.visited = 0
     } 
 }
 
 
 class Graph<T>{
-    public nodes: node<T>[]
+    public nodes: node<T>[] = []
 
     // depth first search
     public static dfs(n: node<any>, storage: someAction<any>): void{
         if ( n == null) return 
         n.visited = storage.currentvalue 
+        storage.visit(n)
         for( let x of n.adjacent){
             if ( x.visited !== storage.currentvalue)
             {
-                storage.visit(x)
                 this.dfs(x, storage)
             }
             
@@ -44,13 +45,17 @@ class Graph<T>{
     public static bfs(n: node<any>, storage: someAction<any>){
         let q = new Queue<node<any>>()
         q.enqueue(n)
+        n.visited = storage.currentvalue
         while ( !q.isEmpty()){
             let d = q.dequeue()
+            if( d == null) return
             storage.visit(d)
             d.adjacent.forEach(nd => {
-                if( nd.visited !== storage.currentvalue)
+                // storage.currentvalue instead of nd.visited = true, so we can have multiple visits
+                if( nd.visited !== storage.currentvalue){
                     nd.visited = storage.currentvalue
                     q.enqueue(nd)
+                }
             })
         }
 
@@ -77,8 +82,8 @@ class Queue<T>{
         this.tail = nn
     }
 
-    dequeue(): T{
-        if (this.head == null) return
+    dequeue(): T | null{
+        if (this.head == null) return null
         let d = this.head.data
         this.head = this.head.next 
         if (this.head == null)  this.tail = null
@@ -111,5 +116,21 @@ f.adjacent = [ h]
 g.adjacent = [ ] 
 h.adjacent = [ d, e, f, g ] 
 
-let s = new someAction()
-console.log(s.currentvalue)
+// ex1
+let dfs = new someAction()
+Graph.dfs(a, dfs)
+console.log(dfs.print())  // predicted [1, 2, 3, 6, 8, 4, 7, 5]
+
+// e.g. 2 
+let bfs = new someAction()
+Graph.bfs(a, bfs)
+console.log(bfs.print())  // predicted [1, 2, 4, 3, 7, 6, 8, 5]
+
+// e.g. 3
+let z = new node(3)
+let y = new node(2, [ z])
+let x = new node(1, [y , z])
+z.adjacent.push(x)
+let bfs2 = new someAction()
+Graph.bfs(x, bfs2)
+console.log(bfs2.print())  // predicted [1, 2, 3]
