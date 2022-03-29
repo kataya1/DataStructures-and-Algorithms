@@ -1,8 +1,7 @@
 class someAction<T>{
-    currentvalue: number;
+
     orderednodes: node<T>[];
     constructor(){
-        this.currentvalue = Math.floor(Math.random() * 100000)
         this.orderednodes = []
     }
     visit(n: node<T>){
@@ -15,11 +14,9 @@ class someAction<T>{
 class node<T>{
     data: T;
     adjacent: node<T>[];
-    visited: number;
     constructor(d: T, adj: node<T>[] = []){
         this.data = d
         this.adjacent = adj
-        this.visited = 0
     } 
 }
 
@@ -28,32 +25,30 @@ class Graph<T>{
     public nodes: node<T>[] = []
 
     // depth first search
-    public static dfs(n: node<any>, storage: someAction<any>): void{
+    public static dfs(n: node<any>, storage: someAction<any>, visited: Set<node<any>> = new Set()): void{
         if ( n == null) return 
-        n.visited = storage.currentvalue 
+        visited.add(n)
         storage.visit(n)
         for( let x of n.adjacent){
-            if ( x.visited !== storage.currentvalue)
-            {
-                this.dfs(x, storage)
-            }
-            
+            if ( !visited.has(x))
+                this.dfs(x, storage, visited)
         }
     }
 
     // breadth first search
     public static bfs(n: node<any>, storage: someAction<any>){
         let q = new Queue<node<any>>()
+        let visited = new Set()
         q.enqueue(n)
-        n.visited = storage.currentvalue
+        visited.add(n)
         while ( !q.isEmpty()){
             let d = q.dequeue()
             if( d == null) return
             storage.visit(d)
             d.adjacent.forEach(nd => {
                 // storage.currentvalue instead of nd.visited = true, so we can have multiple visits
-                if( nd.visited !== storage.currentvalue){
-                    nd.visited = storage.currentvalue
+                if( !visited.has(nd)){
+                    visited.add(nd)
                     q.enqueue(nd)
                 }
             })
