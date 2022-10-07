@@ -71,13 +71,13 @@ class Heap extends Array {
       let ci;
       if (this.#hasRightChild(index)) {
         ci = this.#getLeftChild(index) <= this.#getRightChild(index)
-                ? this.#getLeftChildIndex(index)
-                : this.#getRightChildIndex(index);
+          ? this.#getLeftChildIndex(index)
+          : this.#getRightChildIndex(index);
       } else ci = this.#getLeftChildIndex(index);
-      if( this[index] > this[ci]){
+      if (this[index] > this[ci]) {
 
-          this.swap(index, ci);
-          this.heapifyDown(ci);
+        this.swap(index, ci);
+        this.heapifyDown(ci);
       }
     }
   }

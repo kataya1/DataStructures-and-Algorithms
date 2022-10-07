@@ -41,17 +41,17 @@ class MinHeap:
         index = 0
         while self.has_left_child(index):
             if (self.has_right_child(index) and self.right_child(index) < self.left_child(index)):
-                index = get_right_child_index(index)
+                index = self.get_right_child_index(index)
             else:
-                index = get_left_child_index(index)
+                index = self.get_left_child_index(index)
             if  self.array[index] >= self.parent(index):
                 break
             else:
-                self.swap(index, get_parent_index(index))
+                self.swap(index, self.get_parent_index(index))
         
     def heapify_up(self):
-        index = size - 1
-        while has_parent(index) and self.array[index] < self.parent(index):
-            parentIndex = get_parent_index(index)
+        index = self.size - 1
+        while self.has_parent(index) and self.array[index] < self.parent(index):
+            parentIndex = self.get_parent_index(index)
             self.swap(index,parentIndex) 
             index = self.parentIndex
